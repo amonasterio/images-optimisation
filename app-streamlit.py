@@ -33,7 +33,7 @@ if uploaded_files:
             filename = uploaded_file.name.rsplit('.', 1)[0] + ".webp"
 
             # Mostrar imagen y botón individual
-            st.image(optimized, caption=filename, use_column_width=True)
+            st.image(optimized, caption=filename, use_container_width=True)
             st.download_button(
                 label=f"Download {filename}",
                 data=optimized,
