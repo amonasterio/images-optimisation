@@ -1,0 +1,11 @@
+*.webp
+*.jpg
+*.jpeg
+*.png
+*.csv
+individual_input
+individual_output
+input
+output
+script.py
+extract-img-from-itemlist.py
