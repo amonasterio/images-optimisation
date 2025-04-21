@@ -3,10 +3,10 @@ from PIL import Image
 import io
 import zipfile
 
-st.title("Optimizador de Imágenes a WebP")
+st.title("WebP Image Optimiser")
 
 uploaded_files = st.file_uploader(
-    "Sube una o más imágenes (JPG, PNG, WEBP)", 
+    "Upload one or more images (JPG, PNG, WEBP)", 
     type=["jpg", "jpeg", "png", "webp"], 
     accept_multiple_files=True
 )
@@ -35,7 +35,7 @@ if uploaded_files:
             # Mostrar imagen y botón individual
             st.image(optimized, caption=filename, use_column_width=True)
             st.download_button(
-                label=f"Descargar {filename}",
+                label=f"Download {filename}",
                 data=optimized,
                 file_name=filename,
                 mime="image/webp"
