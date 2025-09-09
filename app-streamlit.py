@@ -12,7 +12,17 @@ uploaded_files = st.file_uploader(
 )
 
 def optimize_image(image_file):
-    image = Image.open(image_file).convert("RGB")  # Convertimos para evitar errores con algunos formatos
+    image = Image.open(image_file)   # Convertimos para evitar errores con algunos formatos
+
+     # Manejar diferentes modos de imagen
+    if image.mode == "P":
+            # Convertir paleta a RGBA para mantener transparencia si existe
+        image = image.convert("RGBA")               
+    elif image.mode == "LA":
+        # Escala de grises con alfa
+        image = image.convert("RGBA")
+    # Si ya es RGBA, mantenerlo así
+    # Si es RGB o L, no convertir
 
     max_width = 1920
     if image.width > max_width:
@@ -33,7 +43,7 @@ if uploaded_files:
             filename = uploaded_file.name.rsplit('.', 1)[0] + ".webp"
 
             # Mostrar imagen y botón individual
-            st.image(optimized, caption=filename, use_container_width=True)
+            st.image(optimized, caption=filename)
             st.download_button(
                 label=f"Download {filename}",
                 data=optimized,
