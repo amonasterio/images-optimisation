@@ -23,10 +23,16 @@ for filename in os.listdir(input_folder):
 
         try:
             with Image.open(input_path) as img:
-                # Convertir a RGB si es PNG con transparencia
-                if img.mode in ("RGBA", "P"):
-                    img = img.convert("RGB")
-
+                # Manejar diferentes modos de imagen
+                if img.mode == "P":
+                     # Convertir paleta a RGBA para mantener transparencia si existe
+                    img = img.convert("RGBA")               
+                elif img.mode == "LA":
+                    # Escala de grises con alfa
+                    img = img.convert("RGBA")
+                # Si ya es RGBA, mantenerlo así
+                # Si es RGB o L, no convertir
+                
                 original_width, original_height = img.size
 
                 # Redimensionar si es necesario
